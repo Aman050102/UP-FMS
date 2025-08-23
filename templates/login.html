@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}เข้าสู่ระบบ | DCSQ{% endblock %}
+{% block content %}
+<section class="login-wrapper">
+  <div class="card">
+    <div class="tabs" role="tablist">
+      <button id="tab-staff" class="tab active" data-role="staff" aria-selected="true">สำหรับเจ้าหน้าที่</button>
+      <button id="tab-user" class="tab" data-role="user" aria-selected="false">สำหรับบุคลากร/นิสิต</button>
+    </div>
+    <div class="logo-box">
+      <img src="{{ url_for('static', filename='img/logo_placeholder.svg') }}" alt="DCSQ Logo" class="logo" />
+      <h1 class="subtitle">กองพัฒนาคุณภาพนิสิตและนิสิตพิการ</h1>
+    </div>
+    <!-- เปลี่ยน action เป็น auth_start เมื่อพร้อมต่อ OAuth -->
+    <form class="action" action="{{ url_for('auth_dev') }}" method="get">
+      <input type="hidden" id="role_choice" name="role_choice" value="staff" />
+      <button type="submit" class="primary-btn">เข้าสู่ระบบด้วย UP ACCOUNT</button>
+    </form>
+    <div class="forgot">
+      <a href="https://passwordreset.microsoftonline.com/" target="_blank" rel="noopener">ลืมรหัสผ่าน</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
