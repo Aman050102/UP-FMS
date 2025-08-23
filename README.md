@@ -50,10 +50,11 @@ It is a website that offers various pet-related services, such as pet boarding, 
 
 ## สมาชิกกลุ่ม / Members:<br>
 
-| 67022951 | นางสาวอชิรญา เขียวกันยะ | Ms. Achiraya Khieokanya |
-| 67022940 | นางสาวหทัยชนก ตันสกุล | Ms. Hataichanok Tansakun |
-| 67023020 | นางสาวอมราพร อ่อนโคกสูง | Ms. Amornporn Onkhoksung |
-| 67023086 | นายอามาน อาลีแก | Mr. Aman Aleekae |
+|------|----------|
+| 67022951 | Ms. Achiraya Khieokanya | 
+| 67022940 | Ms. Hataichanok Tansakun  | 
+| 67023020 | Ms. Amornporn Onkhoksung |  
+| 67023086 | Mr. Aman Alikae  | 
 
 
 📌 ที่มาและความสำคัญ | Background and Significance
