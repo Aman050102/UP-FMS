@@ -3,7 +3,6 @@
 
 ระบบจัดเก็บและวิเคราะห์ข้อมูลการใช้บริการสนามกีฬา
 
-⸻
 
 👥 ผู้จัดทำ | Team Members
 	•	กลุ่มที่ 4 (No Name !)
@@ -15,15 +14,12 @@
 	•	67023020 นางสาวอมราพร อ่อนโคกสูง | Ms. Amornporn Onkhoksung <br>
 	•	67023086 นายอามาน อาลีแก | Mr. Aman Aleekae <br>
 
-⸻
 
 📌 ที่มาและความสำคัญ | Background and Significance
 
 ปัจจุบันสนามกีฬาในมหาวิทยาลัยมีผู้ใช้บริการจำนวนมาก แต่การจัดเก็บข้อมูลยังใช้วิธีบันทึกด้วยมือหรือ Excel ซึ่งเสี่ยงต่อความผิดพลาดและยากต่อการวิเคราะห์เชิงลึก จึงเกิดแนวคิดพัฒนาระบบจัดเก็บและวิเคราะห์ข้อมูลการใช้บริการสนามกีฬา โดยใช้การสแกน QR Code เพื่อบันทึกข้อมูลผู้ใช้งาน รวมถึงการยืม-คืนอุปกรณ์ และนำเสนอผลในรูปแบบสถิติ กราฟ และ Dashboard
 
 Currently, university sports facilities are widely used by students and staff. However, the data collection process still relies on manual recording or Excel sheets, which can lead to errors, duplication, and inefficient data analysis. Therefore, this project proposes the development of a Sports Facility Usage Tracking and Analytics System, utilizing QR Code scanning to record users’ activities and equipment check-in/out, while providing statistical reports, graphs, and dashboards for efficient facility management.
-
-⸻
 
 🎯 วัตถุประสงค์ | Objectives <br>
 	•	พัฒนาระบบบันทึกข้อมูลการใช้บริการสนามกีฬาและการยืม-คืนอุปกรณ์กีฬาแบบดิจิทัล <br>
@@ -37,14 +33,12 @@ Currently, university sports facilities are widely used by students and staff. H
 	•	Improve convenience and accuracy with QR Code scanning <br>
 	•	Ensure system accessibility via both PC and mobile devices <br>
 
-⸻
 
 👥 กลุ่มผู้ใช้งานหลัก | Target Users <br>
 	•	เจ้าหน้าที่หน่วยงานกีฬา (Sports Facility Staff): ดูแลสนามกีฬาและบริหารอุปกรณ์ <br>
 	•	นิสิตช่วยงาน (Student Assistants): ผู้ช่วยเจ้าหน้าที่ในการเก็บข้อมูล <br>
 	•	นิสิตและบุคลากรทั่วไป (General Users): ผู้เข้าใช้งานสนามกีฬา <br>
     
-⸻
 
 ⚙️ ฟีเจอร์หลักของระบบ | Key Features <br>
 	•	ระบบสแกน QR Code เพื่อระบุผู้เข้าใช้สนามหรือผู้ยืมอุปกรณ์ <br>
@@ -62,7 +56,6 @@ Currently, university sports facilities are widely used by students and staff. H
 	•	Export reports in PDF or Excel <br>
 	•	Role-based access control (Staff / Student Assistant) <br>
 
-⸻
 
 📊 เทคโนโลยีที่อาจใช้ | Suggested Technologies <br>
 	•	Frontend: HTMl / CSS / JavaScript / Vue.js <br>
@@ -71,7 +64,6 @@ Currently, university sports facilities are widely used by students and staff. H
 	•	Authentication: QR Code + Role-based Access <br>
 	•	Visualization: Chart.js / D3.js <br>
 
-⸻
 
 🚀 ประโยชน์ที่คาดว่าจะได้รับ | Expected Benefits <br>
 	•	การจัดเก็บและวิเคราะห์ข้อมูลสนามกีฬาที่ทันสมัยและแม่นยำ <br>
@@ -83,4 +75,3 @@ Currently, university sports facilities are widely used by students and staff. H
 	•	Reduced paperwork and workload for staff <br>
 	•	User-friendly system accessible via PC and mobile
 
-⸻
