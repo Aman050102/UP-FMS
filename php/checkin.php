@@ -1,52 +1,48 @@
 <?php
 require __DIR__.'/db.php';
 require __DIR__.'/auth.php';
-ensureAuth();
+session_start();
+if (!isset($_SESSION['user'])) { http_response_code(401); exit; } // ต้องล็อกอินเสมอ
 
-$user = $_SESSION['user']; // ['email','studentId','name','faculty']
+$allowed = ['outdoor','badminton','pool','track','tennis','basketball','futsal','volleyball','sepak_takraw','petanque','football'];
 $facility = $_GET['facility'] ?? '';
 $session  = $_GET['session']  ?? '';
-$nonce    = $_GET['nonce']    ?? '';
+$role     = $_GET['role']     ?? 'student';
+$format   = $_GET['format']   ?? 'page';
 
-$allowedFacilities = ['outdoor','badminton','pool','track'];
-
-if (!in_array($facility, $allowedFacilities, true)) { http_response_code(400); exit('Invalid facility'); }
+if (!in_array($facility, $allowed, true)) { http_response_code(400); exit('Invalid facility'); }
 if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $session)) { http_response_code(400); exit('Invalid session'); }
-if (!preg_match('/^[0-9a-fA-F-]{8,}$/', $nonce))     { http_response_code(400); exit('Invalid nonce'); }
+$role = ($role === 'staff') ? 'staff' : 'student';
 
+// (ตัวอย่าง) ดึงข้อมูลผู้ใช้จาก session
+$user = $_SESSION['user'] ?? [];
 $studentId = $user['studentId'] ?? null;
-$email     = $user['email'] ?? null;
-$name      = $user['name'] ?? null;
-$faculty   = $user['faculty'] ?? null;
+$email     = $user['email']     ?? null;
+$name      = $user['name']      ?? null;
+$faculty   = $user['faculty']   ?? null;
 
-if (!$studentId && $email && preg_match('/^(\d{5,9})@/', $email, $m)) { $studentId = $m[1]; }
-if (!$studentId) { http_response_code(400); exit('No student ID'); }
+// บันทึก
+$stmt = $pdo->prepare("
+  INSERT INTO checkins (ts, session_date, facility, role, student_id, name_full, faculty, email, ip_address, user_agent)
+  VALUES (NOW(), :session_date, :facility, :role, :sid, :name, :faculty, :email, :ip, :ua)
+");
+$stmt->execute([
+  ':session_date' => $session,
+  ':facility'     => $facility,
+  ':role'         => $role,
+  ':sid'          => $studentId,
+  ':name'         => $name,
+  ':faculty'      => $faculty,
+  ':email'        => $email,
+  ':ip'           => $_SERVER['REMOTE_ADDR'] ?? null,
+  ':ua'           => $_SERVER['HTTP_USER_AGENT'] ?? null,
+]);
 
-try {
-  $stmt = $pdo->prepare("
-    INSERT INTO checkins
-      (ts, session_date, facility, student_id, name_full, faculty, email, ip_address, user_agent, nonce)
-    VALUES
-      (NOW(), :session_date, :facility, :student_id, :name_full, :faculty, :email, :ip_address, :user_agent, :nonce)
-  ");
-  $stmt->execute([
-    ':session_date' => $session,
-    ':facility'     => $facility,
-    ':student_id'   => $studentId,
-    ':name_full'    => $name,
-    ':faculty'      => $faculty,
-    ':email'        => $email,
-    ':ip_address'   => $_SERVER['REMOTE_ADDR'] ?? null,
-    ':user_agent'   => $_SERVER['HTTP_USER_AGENT'] ?? null,
-    ':nonce'        => $nonce,
-  ]);
-} catch (PDOException $e) {
-  if ($e->getCode() === '23000') {
-    header("Location: /already.php?facility=$facility&session=$session");
-    exit;
-  }
-  http_response_code(500); exit('DB Error');
+if ($format === 'pixel') {
+  header('Content-Type: image/gif');
+  header('Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate');
+  echo base64_decode('R0lGODlhAQABAPAAAP///wAAACwAAAAAAQABAAACAkQBADs=');
+  exit;
 }
 
-header("Location: /success.php?facility=$facility&session=$session");
-exit;
+echo 'OK';
