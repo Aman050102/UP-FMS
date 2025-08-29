@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>เมนูหลัก – ระบบสนามกีฬา</title>
+  <meta name="color-scheme" content="light dark">
+  <style>
+    :root{
+      --purple:#6f4ab4; --purple-soft:#efe8f7; --bg:#efe8f7; --card:#fff; --text:#1f1b2e; --muted:#6a6570; --divider:#e9e4f3; --shadow:0 14px 35px rgba(55,36,107,.15);
+      --outdoor:#2e7d32; --pool:#0f766e; --track:#ef6c00; --badminton:#1565c0;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family:ui-sans-serif, system-ui, -apple-system, "Noto Sans Thai", Roboto, Arial, sans-serif; color:var(--text);
+      background:linear-gradient(180deg, var(--purple) 0 120px, var(--bg) 120px 100%)}
+
+    header{height:60px; display:flex; align-items:center; justify-content:space-between; padding:0 18px; color:#fff; background:var(--purple)}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:900}
+    .brand img{height:38px}
+
+    nav{background:#5d3fa3; height:40px; display:flex; align-items:center; padding:0 18px; color:#fff}
+    nav ul{list-style:none; margin:0; padding:0; display:flex; gap:20px}
+    nav li{cursor:pointer; font-weight:600}
+
+    .user{position:relative}
+    .user button{background:rgba(255,255,255,.15); border:0; padding:6px 12px; border-radius:8px; color:#fff; cursor:pointer}
+    .dropdown{position:absolute; right:0; top:110%; background:#fff; color:#000; border-radius:10px; box-shadow:var(--shadow); display:none; min-width:200px;}
+    .dropdown ul{list-style:none; margin:0; padding:8px 0;}
+    .dropdown li{padding:8px 16px; cursor:pointer;}
+    .dropdown li:hover{background:#f3effa}
+    .dropdown hr{border:none; border-top:1px solid var(--divider); margin:4px 0}
+
+    main{min-height:calc(100% - 100px); padding:22px; display:grid; gap:18px}
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
+    .card{background:var(--card); border-radius:22px; box-shadow:var(--shadow); padding:26px; display:grid; gap:16px; transition:transform .06s ease, box-shadow .2s ease; border:1px solid var(--divider)}
+    .card:hover{transform:translateY(-2px); box-shadow:0 18px 45px rgba(55,36,107,.18)}
+    .card h3{margin:0; font-size:20px}
+    .card .desc{color:var(--muted); font-size:13px}
+    .card .cta{display:flex; gap:10px; align-items:center; justify-content:space-between}
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:12px; font-weight:700; border:1px solid var(--divider)}
+    .go{appearance:none; border:0; background:var(--purple-soft); color:#3b2a66; padding:10px 14px; border-radius:12px; font-weight:800; cursor:pointer}
+    .icon{width:56px; height:56px; border-radius:16px; display:grid; place-items:center; font-size:30px; background:#f5f2fb}
+
+    .facilities{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+    .facility{background:#faf9fc; border:1px solid var(--divider); border-radius:16px; padding:14px; display:grid; gap:6px}
+    .facility .tag{display:inline-flex; align-items:center; gap:8px; font-weight:800}
+    .badge{display:inline-block; padding:2px 8px; border-radius:999px; font-size:12px; border:1px solid var(--divider); background:#fff}
+
+    .tips{color:var(--muted); font-size:12px}
+
+    @media(max-width: 1100px){ .grid{grid-template-columns:repeat(2,1fr)} .facilities{grid-template-columns:repeat(2,1fr)} }
+    @media(max-width: 680px){ .grid{grid-template-columns:1fr} }
+    @media(prefers-color-scheme:dark){
+      :root{--bg:#1f1a29; --card:#221d2e; --text:#f6f1ff; --muted:#c7bfd3; --divider:#3a304b; --purple-soft:#3a3051}
+      .icon{background:#2b2240}
+      nav{background:#463377}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="../../img/logo-dsq.png" alt="DQSD">
+      <div>ระบบสนามกีฬา</div>
+    </div>
+    <div class="user">
+      <button id="userBtn">นายบัชชาม แฮมา ▾</button>
+      <div class="dropdown" id="userMenu">
+        <ul>
+          <li style="font-weight:700">👥 กลุ่มสิทธิ์การใช้งาน</li>
+          <li>✔ ผู้ำนำนิสิต</li>
+          <li>◯ ชมรมนิสิต</li>
+          <li>◯ นิสิตปัจจุบัน</li>
+          <hr>
+          <li style="color:red">⏻ ออกจากระบบ</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li>หน้าแรก</li>
+      <li>คิวอาร์โค้ดเช็คอิน</li>
+      <li>รายงานผลการใช้สนาม</li>
+      <li>ประเมินผู้ใช้สนาม</li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="grid">
+      <article class="card">
+        <div class="icon">📱</div>
+        <h3>คิวอาร์โค้ดเช็คอิน</h3>
+        <p class="desc">สร้าง / เปิด QR สำหรับเช็คอินหน้างาน</p>
+        <div class="cta"><span class="pill">/checkin</span><button class="go" data-link="/qr">เปิด</button></div>
+      </article>
+      <article class="card">
+        <div class="icon">📊</div>
+        <h3>รายงานผลการใช้สนาม</h3>
+        <p class="desc">ดูตามวัน/เดือน/ปี, ค้นหา, ส่งออกเป็น Excel / PDF / DOCX</p>
+        <div class="cta"><span class="pill">ตาราง + Export</span><button class="go" data-link="/reports">เปิด</button></div>
+      </article>
+      <article class="card">
+        <div class="icon">📝</div>
+        <h3>ประเมินผู้ใช้สนาม</h3>
+        <p class="desc">แบบประเมินความพึงพอใจ และทักษะการเรียนรู้</p>
+        <div class="cta"><span class="pill">ฟอร์ม/QR สนาม</span><button class="go" data-link="/survey">เปิด</button></div>
+      </article>
+    </section>
+
+    <section class="card">
+      <h3>เมนูลัดตามประเภทสนาม</h3>
+      <div class="facilities">
+        <div class="facility">
+          <div class="tag" style="color:var(--outdoor)">🏞️ สนามกลางแจ้ง</div>
+          <div class="tips">เช็คอิน / รายงาน / ประเมิน</div>
+          <div class="cta">
+            <button class="go" data-link="/qr?facility=outdoor">QR</button>
+            <button class="go" data-link="/reports?facility=outdoor">รายงาน</button>
+            <button class="go" data-link="/survey?facility=outdoor">ประเมิน</button>
+          </div>
+        </div>
+        <div class="facility">
+          <div class="tag" style="color:var(--pool)">🏊‍♂️ สระว่ายน้ำ</div>
+          <div class="tips">เช็คอิน / รายงาน / ประเมิน</div>
+          <div class="cta">
+            <button class="go" data-link="/qr?facility=pool">QR</button>
+            <button class="go" data-link="/reports?facility=pool">รายงาน</button>
+            <button class="go" data-link="/survey?facility=pool">ประเมิน</button>
+          </div>
+        </div>
+        <div class="facility">
+          <div class="tag" style="color:var(--track)">🏃 ลู่-ลาน</div>
+          <div class="tips">เช็คอิน / รายงาน / ประเมิน</div>
+          <div class="cta">
+            <button class="go" data-link="/qr?facility=track">QR</button>
+            <button class="go" data-link="/reports?facility=track">รายงาน</button>
+            <button class="go" data-link="/survey?facility=track">ประเมิน</button>
+          </div>
+        </div>
+        <div class="facility">
+          <div class="tag" style="color:var(--badminton)">🏸 แบดมินตัน</div>
+          <div class="tips">เช็คอิน / รายงาน / ประเมิน</div>
+          <div class="cta">
+            <button class="go" data-link="/qr?facility=badminton">QR</button>
+            <button class="go" data-link="/reports?facility=badminton">รายงาน</button>
+            <button class="go" data-link="/survey?facility=badminton">ประเมิน</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="tips">หมายเหตุ: ปุ่มจะนำไปยังหน้าฟังก์ชันที่มีอยู่แล้ว (QR, รายงาน, Survey) — เปลี่ยน path ได้ใน JS</p>
+  </main>
+
+  <script>
+    const ROUTES = { '/qr': '/qr-generator', '/reports': '/reports/index.html', '/survey': '/survey/index.html' };
+    document.querySelectorAll('.go').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const raw = btn.dataset.link;
+        const [path, qs] = raw.split('?');
+        const dest = (ROUTES[path] || path) + (qs? ('?'+qs) : '');
+        location.href = dest;
+      });
+    });
+    // User dropdown toggle
+    document.getElementById('userBtn').addEventListener('click',()=>{
+      document.getElementById('userMenu').style.display = document.getElementById('userMenu').style.display==='block'?'none':'block';
+    });
+    window.addEventListener('click', e=>{ if(!document.getElementById('userBtn').contains(e.target) && !document.getElementById('userMenu').contains(e.target)){ document.getElementById('userMenu').style.display='none'; }});
+  </script>
+</body>
+</html>
