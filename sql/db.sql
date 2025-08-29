@@ -96,3 +96,13 @@ BEGIN
   */
   CALL rollup_usage_counts(CONCAT(CURDATE(), ' 00:00:00'), NOW());
 END;
+CREATE TABLE checkins (
+  id           BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  email        VARCHAR(255) NOT NULL,
+  facility_id  VARCHAR(50)  NOT NULL,   -- pool/track/badminton/outdoor/...
+  type         ENUM('checkin','checkout') NOT NULL DEFAULT 'checkin',
+  session_date DATE NOT NULL,
+  created_at   DATETIME NOT NULL,
+  KEY idx_session_facility (session_date, facility_id),
+  KEY idx_email_created (email, created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

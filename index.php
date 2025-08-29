@@ -29,28 +29,14 @@
   <!-- เนื้อหาหลัก -->
   <main class="wrap">
     <section class="card" role="region" aria-labelledby="login-title">
-      <h1 id="login-title" class="visually-hidden">เข้าสู่ระบบ DQSD</h1>
 
       <!-- ปุ่มสลับบทบาทผู้ใช้ (แท็บ) -->
       <div class="segmented"
            role="tablist"
            aria-label="ประเภทผู้ใช้">
-        <button id="tab-staff"
-                role="tab"
-                aria-controls="panel-staff"
-                aria-selected="true"
-                aria-pressed="true"
-                tabindex="0">
-          สำหรับเจ้าหน้าที่
-        </button>
-        <button id="tab-person"
-                role="tab"
-                aria-controls="panel-person"
-                aria-selected="false"
-                aria-pressed="false"
-                tabindex="-1">
-          สำหรับบุคลากร/นิสิต
-        </button>
+        <button onclick="window.location.href='auth.php?role=staff'">เข้าสู่ระบบสำหรับเจ้าหน้าที่</button>
+        <button onclick="window.location.href='auth.php?role=staff'">เข้าสู่ระบบสำหรับเจ้าหน้าที่</button>
+
       </div>
 
       <!-- โลโก้/ชื่อหน่วยงาน -->
