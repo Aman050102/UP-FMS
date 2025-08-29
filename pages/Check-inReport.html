@@ -5,40 +5,64 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="icon" href="../../img/Logo_of_University_of_Phayao.svg.png" type="image/icon type">
+  <link rel="icon" href="../../img/Logo_of_University_of_Phayao.svg.png" type="image/png">
 
   <title>รายงานผู้เข้าใช้สนาม – ดู/ค้นหา/ดาวน์โหลด</title>
   <meta name="color-scheme" content="light dark">
 
-  <link rel="stylesheet" href="../../asssets/css/Check-inReport.css">
+  <!-- แก้พาธ asssets -> assets -->
+  <link rel="stylesheet" href="../../assets/css/Check-inReport.css">
 
+  <!-- สคริปต์หลักของหน้านี้ (ต้องมีฟังก์ชัน load()/applyFilters()/rowsForExport() ตามที่เราทำไว้) -->
   <script src="../../js/Check-inReport.js" defer></script>
 
   <!-- Export libs -->
-  <script src=" https://cdn.jsdelivr.net/npm/xlsx@0.19.3/dist/xlsx.full.min.js">
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.19.3/dist/xlsx.full.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.min.js"></script>
 
+  <style>
+    /* ซ่อนคอลัมน์ PII บนจอ (ยัง export ได้ตาม rowsForExport ใหม่ที่สรุปเป็น “ชื่อสนาม/จำนวนคน”) */
+    @media screen {
+
+      #table thead th:nth-child(4),
+      #table thead th:nth-child(5),
+      #table thead th:nth-child(6),
+      #table thead th:nth-child(7),
+      #table tbody td:nth-child(4),
+      #table tbody td:nth-child(5),
+      #table tbody td:nth-child(6),
+      #table tbody td:nth-child(7) {
+        display: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <header><span> <img src="../../img/logo-dsq.png" alt="DQSD" height=50"> </span></header>
-
+  <header class="topbar" aria-label="University Bar">
+    <div class="brand-small" aria-label="DQSD logo small">
+      <!-- <span class="brand-mark" aria-hidden="true"></span> -->
+      <span> <img src="/img/logo-dsa.png" alt="DQSD" height=50"> </span>
+    </div>
+  </header>
   <main>
     <section class="card">
       <div class="toolbar">
         <label>ช่วงวันที่: <input type="date" id="from"> - <input type="date" id="to"></label>
+
         <label>กลุ่ม:
           <select id="groupBy">
             <option value="none">ไม่จัดกลุ่ม</option>
             <option value="facility">ตามสนาม</option>
-            <option value="faculty">ตามคณะ</option>
             <option value="date">ตามวัน (session)</option>
           </select>
         </label>
-        <input type="text" id="q" placeholder="ค้นหา ชื่อ/รหัส/คณะ/อีเมล" style="min-width:240px">
+
+        <!-- ช่องค้นหา ปรับข้อความให้ตรงการใช้งาน -->
+        <input type="text" id="q" placeholder="ค้นหา: ชื่อสนาม" style="min-width:240px">
+
         <div class="chips" id="chips">
           <span class="chip selected" data-k="all">ทั้งหมด</span>
           <span class="chip" data-k="outdoor" style="color:var(--outdoor)">สนามกลางแจ้ง</span>
@@ -46,6 +70,7 @@
           <span class="chip" data-k="pool" style="color:var(--pool)">สระว่ายน้ำ</span>
           <span class="chip" data-k="track" style="color:var(--track)">ลู่-ลาน</span>
         </div>
+
         <span style="flex:1"></span>
         <button id="btnExcel">ดาวน์โหลด Excel</button>
         <button id="btnPDF">ดาวน์โหลด PDF</button>
@@ -89,7 +114,22 @@
     </section>
   </main>
 
+  <!-- ตั้งค่าจาก ?session= แล้วสั่งโหลดข้อมูลทันที (รันหลัง Check-inReport.js เพราะ defer ทั้งคู่) -->
+  <script>
+    (function initDateFromQuery() {
+      const url = new URL(location.href);
+      const sess = url.searchParams.get('session');
+      const $from = document.getElementById('from');
+      const $to = document.getElementById('to');
+      const today = new Date().toISOString().slice(0, 10);
 
+      $from.value = sess || today;
+      $to.value = sess || today;
+
+      // เรียก load() จาก Check-inReport.js
+      if (typeof load === 'function') load();
+    })();
+  </script>
 </body>
 
 </html>
