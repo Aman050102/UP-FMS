@@ -15,7 +15,7 @@ Software Engineering Department, University of Phayao, Academic Year 2025**
 
 ---
 
-## 👥 Team Members | ผู้จัดทำ  
+##  Team Members | ผู้จัดทำ  
 
 | Student ID | Name (English) | ชื่อ (ไทย) |
 |------------|----------------|------------|
@@ -49,7 +49,7 @@ Software Engineering Department, University of Phayao, Academic Year 2025**
 
 ---
 
-## 👥 Target Users | กลุ่มผู้ใช้งานหลัก
+##  Target Users | กลุ่มผู้ใช้งานหลัก
 - เจ้าหน้าที่สนามกีฬา (Sports Facility Staff)  
 - นิสิตช่วยงาน (Student Assistants)  
 - นิสิตและบุคลากรทั่วไป (General Users)  
