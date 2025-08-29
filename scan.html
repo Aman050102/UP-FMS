@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="th">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>สแกนกำลังบันทึก...</title>
+<style>
+    html,
+    body {
+        margin: 0;
+        height: 100%;
+        background: #0000
+    }
+</style>
+<script>
+    // ดึงพารามิเตอร์
+    const p = new URLSearchParams(location.search);
+    const facility = p.get('facility');
+    const session = p.get('session'); // YYYY-MM-DD
+    const redirect = p.get('redirect'); // ไม่บังคับ
+
+    if (facility && session) {
+        // ยิงบันทึกแบบเงียบด้วยพิกเซล 1x1 (ไม่มี UI)
+        const img = new Image(1, 1);
+        img.referrerPolicy = 'no-referrer-when-downgrade';
+        img.src = `/checkin?facility=${encodeURIComponent(facility)}&session=${encodeURIComponent(session)}&format=pixel`;
+    }
+
+    // ถ้ามี redirect ให้ส่งต่อออกนอก (เช่น ไปหน้าเพจงาน/ไลน์กลุ่ม)
+    if (redirect) { setTimeout(() => { location.replace(redirect); }, 300); }
+    async function mirrorToLocalStorage(facility) {
+        const now = new Date();
+        const key = `facility-checkins:${now.toISOString().slice(0, 10)}`; // YYYY-MM-DD
+        const arr = JSON.parse(localStorage.getItem(key) || '[]');
+        arr.push({ ts: now.toISOString(), facility });
+        localStorage.setItem(key, JSON.stringify(arr));
+    }
+
+    if (facility && session) {
+        const img = new Image(1, 1);
+        img.onload = () => mirrorToLocalStorage(facility);
+        img.onerror = () => mirrorToLocalStorage(facility); // กันพลาดก็เก็บสำเนาไว้ก่อน
+        img.src = `/checkin?facility=${encodeURIComponent(facility)}&session=${encodeURIComponent(session)}&format=pixel`;
+    }
+</script>
+
+<body></body>
+
+</html>

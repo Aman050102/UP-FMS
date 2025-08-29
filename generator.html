@@ -174,22 +174,34 @@
             <h2>คิวอาร์ที่สร้าง</h2>
             <div id="qrContainer" class="grid-qr"></div>
         </section>
+        <div class="chips" id="chips">
+            <span class="chip selected" data-k="all">ทั้งหมด</span>
+            <span class="chip" data-k="badminton_outdoor">แบดฯ กลางแจ้ง</span>
+            <span class="chip" data-k="badminton_dome">แบดฯ ในโดม</span>
+            <span class="chip" data-k="tennis">เทนนิส</span>
+            <span class="chip" data-k="basketball">บาสเก็ตบอล</span>
+            <span class="chip" data-k="pool">สระว่ายน้ำ</span>
+            <span class="chip" data-k="petanque">เปตอง</span>
+            <span class="chip" data-k="futsal">ฟุตซอล</span>
+            <span class="chip" data-k="track">ลู่-ลาน</span>
+            <span class="chip" data-k="volleyball">วอลเลย์บอล</span>
+            <span class="chip" data-k="sepak_takraw">เซปักตะกร้อ</span>
+        </div>
     </main>
 
     <script>
-        // === ตั้งค่ารายชื่อสนาม ===
-        const FACILITIES = [
-            { k: 'badminton_outdoor', name: 'แบดมินตันกลางแจ้ง' },
-            { k: 'badminton_dome', name: 'แบดมินตันในโดม' },
-            { k: 'tennis', name: 'เทนนิส' },
-            { k: 'basketball', name: 'บาสเก็ตบอล' },
-            { k: 'pool', name: 'สระว่ายน้ำ' },
-            { k: 'petanque', name: 'เปตอง' },
-            { k: 'futsal', name: 'ฟุตซอล' },
-            { k: 'track', name: 'ลู่-ลาน' },
-            { k: 'volleyball', name: 'วอลเลย์บอล' },
-            { k: 'sepak_takraw', name: 'เซปักตะกร้อ' }
-        ];
+        const FAC = {
+            badminton_outdoor: 'แบดมินตันกลางแจ้ง',
+            badminton_dome: 'แบดมินตันในโดม',
+            tennis: 'เทนนิส',
+            basketball: 'บาสเก็ตบอล',
+            pool: 'สระว่ายน้ำ',
+            petanque: 'เปตอง',
+            futsal: 'ฟุตซอล',
+            track: 'ลู่-ลาน',
+            volleyball: 'วอลเลย์บอล',
+            sepak_takraw: 'เซปักตะกร้อ'
+        };
 
         const $ = (s, p = document) => p.querySelector(s); const $$ = (s, p = document) => Array.from(p.querySelectorAll(s));
         const id = (k) => document.getElementById(k);

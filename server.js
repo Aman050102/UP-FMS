@@ -86,4 +86,52 @@ app.get('/api/entries.csv', async (req, res) => {
     const lines = rows.map(e => {
         const d = new Date(e.ts);
         const th = new Intl.DateTimeFormat('th-TH', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).formatToParts(d);
-        const obj = Objec
+        const obj = Object.fromEntries(th.map(p => [p.type, p.value]));
+        // obj.day, obj.month, obj.year, obj.hour, obj.minute, obj.second
+        const date = `${e.session}`; // YYYY-MM-DD ตาม session
+        const [y, m, day] = e.session.split('-');
+        const time = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}`;
+        return `${day}/${m}/${y},${m},${y},${time},${e.facility}`;
+    });
+    res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+    res.send(header + lines.join('\n'));
+});
+
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
+// ฟังก์ชันตอบกลับเป็นรูป 1x1 โปร่งใส (GIF)
+function sendPixel(res) {
+    const gif = Buffer.from(
+        'R0lGODlhAQABAPAAAP///wAAACwAAAAAAQABAAACAkQBADs=', // 1x1 transparent GIF
+        'base64'
+    );
+    res.setHeader('Content-Type', 'image/gif');
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    res.status(200).end(gif);
+}
+// GET /api/checkins?from=YYYY-MM-DD&to=YYYY-MM-DD&facility=xxx
+app.get('/api/checkins', async (req, res) => {
+    const { from = '0000-01-01', to = '9999-12-31', facility = '' } = req.query;
+    const db = await loadDB();
+    const rows = db.entries.filter(e => (
+        (!facility || e.facility === facility) &&
+        e.session >= from && e.session <= to
+    ));
+    // ส่งรูปแบบที่หน้า Report คาดหวัง (ข้อมูลนิสิตเว้นว่าง เพราะเราไม่เก็บ PII)
+    const out = rows.map(e => ({
+        ts: e.ts,                         // ISO เวลาเข้า
+        session_date: e.session,          // YYYY-MM-DD
+        facility: e.facility,
+        student_id: '',
+        name_full: '',
+        faculty: '',
+        email: ''
+    })).sort((a, b) => a.session_date.localeCompare(b.session_date) || a.ts.localeCompare(b.ts));
+    res.json(out);
+});
+// ภายในตัวจัดการ /checkin เดิม ให้รับ query: silent, format, redirect
+// if (silent === '1' || format === 'pixel') return sendPixel(res);
+// if (redirect) return res.redirect(302, redirect);
