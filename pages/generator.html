@@ -4,42 +4,27 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>สร้างคิวอาร์เข้าใช้สนาม (นับจำนวนอย่างเดียว)</title>
+
+  <link rel="icon" href="../../img/Logo_of_University_of_Phayao.svg.png" type="image/icon type"> 
+
+  <title>สร้างคิวอาร์เข้าเลือกสนาม (QR เดียว)</title>
   <meta name="color-scheme" content="light dark">
-  <link rel="icon" href="./favicon.png" />
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
   <style>
     :root {
-      /* Palette */
-      --purple: #6f4ab4;
+      --brand: #6f4ab4;
       --bg: #f7f6fb;
       --card: #fff;
       --text: #1b1a21;
-      --muted: #69637a;
-      --divider: #e8e4ee;
-      /* Accents (ถ้าจะใช้แต้มสีเฉพาะสนาม) */
-      --outdoor: #2e7d32;
-      --badminton: #1565c0;
-      --pool: #0f766e;
-      --track: #ef6c00;
-      /* Shadows */
-      --shadow-sm: 0 2px 10px rgba(24, 16, 48, .05);
-      --shadow-md: 0 8px 28px rgba(24, 16, 48, .1);
-      /* Type & Radius */
-      --fs-base: 16px;
-      --fs-sm: 14px;
-      --fs-lg: 18px;
-      --lh: 1.6;
+      --muted: #6f6a7a;
+      --divider: #e9e6f0;
+      --ring: rgba(111, 74, 180, .18);
+      --shadow-sm: 0 3px 12px rgba(23, 16, 48, .08);
+      --shadow-md: 0 14px 32px rgba(23, 16, 48, .12);
       --radius-lg: 22px;
       --radius-md: 14px;
-      --radius-sm: 10px;
-      /* Spacing */
-      --space-1: 6px;
-      --space-2: 10px;
-      --space-3: 14px;
-      --space-4: 18px;
-      --space-5: 24px;
     }
 
     * {
@@ -48,170 +33,183 @@
 
     html,
     body {
-      height: 100%
-    }
-
-    body {
+      height: 100%;
       margin: 0;
       font-family: ui-sans-serif, system-ui, -apple-system, "Noto Sans Thai", Roboto, Arial, sans-serif;
-      font-size: var(--fs-base);
-      line-height: var(--lh);
       color: var(--text);
-      background: linear-gradient(180deg, var(--purple) 0 72px, var(--bg) 72px 100%);
+      background: linear-gradient(180deg, var(--brand) 0 76px, var(--bg) 76px 100%);
     }
 
-    .topbar {
-      height: 72px;
+    header {
+      height: 76px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 0 var(--space-4);
+      padding: 0 18px;
       color: #fff;
-      font-weight: 900
+      font-weight: 900;
     }
 
-    main {
-      padding: var(--space-4);
+    .wrap {
+      min-height: calc(100vh - 76px);
+      padding: 24px;
       display: grid;
-      gap: var(--space-4);
-      max-width: 1100px;
-      margin: 0 auto;
+      gap: 24px;
+      grid-template-columns: 1fr 1fr;
     }
 
     .card {
       background: var(--card);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-md);
-      padding: var(--space-5);
+      padding: 22px;
+      width: 100%;
     }
 
-    .row {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: var(--space-3);
-      align-items: center;
-      margin-bottom: var(--space-3);
+    h1 {
+      font-size: 22px;
+      margin: 0 0 8px
     }
 
     .hint {
       color: var(--muted);
-      font-size: var(--fs-sm)
+      font-size: 14px;
+      margin: 0
     }
 
-    input[type="text"],
-    input[type="date"],
-    select {
+    .grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: minmax(180px, 220px) 1fr;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    @media (max-width:960px) {
+      .wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width:760px) {
+      .grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    input,
+    select,
+    button {
       padding: 12px 14px;
       border: 1px solid var(--divider);
       border-radius: var(--radius-md);
-      font-weight: 600;
+      font-weight: 700;
       background: #fff;
+    }
+
+    input,
+    select {
+      width: 100%;
       outline: none;
-      transition: box-shadow .15s ease, border-color .15s ease;
+      transition: border-color .15s, box-shadow .15s;
     }
 
-    input[type="text"]:focus,
-    input[type="date"]:focus,
+    input:focus,
     select:focus {
-      border-color: #b8a9e6;
-      box-shadow: 0 0 0 4px rgba(111, 74, 180, .15);
+      border-color: #b9ace8;
+      box-shadow: 0 0 0 5px var(--ring);
     }
 
-    .controls {
+    .row-actions {
       display: flex;
-      gap: var(--space-3);
+      gap: 10px;
       flex-wrap: wrap;
-      margin-top: var(--space-2);
+      margin-top: 10px;
     }
 
-    button {
-      appearance: none;
-      padding: 12px 16px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--divider);
-      background: #fff;
-      font-weight: 800;
+    .btn {
       cursor: pointer;
-      transition: transform .05s ease, box-shadow .15s ease, background .15s ease;
+      background: #fff;
+      transition: transform .05s, box-shadow .15s, background .15s;
+      box-shadow: var(--shadow-sm);
     }
 
-    button:hover {
-      box-shadow: var(--shadow-sm);
+    .btn:hover {
       background: #faf9fd
     }
 
-    button:active {
+    .btn:active {
       transform: translateY(1px)
     }
 
-    .chips {
-      display: flex;
-      gap: var(--space-2);
-      flex-wrap: wrap
+    .btn.primary {
+      background: linear-gradient(180deg, #7b57c6, #6f4ab4);
+      color: #fff;
+      border: 0;
     }
 
-    .chip {
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--divider);
-      cursor: pointer;
-      font-weight: 700;
-      background: #fff;
-      color: #3a3650;
-      transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
-      user-select: none;
+    .btn.primary:hover {
+      filter: brightness(.98)
     }
 
-    .chip:hover {
-      background: #faf9fd;
-      box-shadow: var(--shadow-sm)
+    .btn.ghost {
+      background: #fff
     }
 
-    .chip.selected {
-      outline: none;
-      border-color: #b8a9e6;
-      box-shadow: 0 0 0 4px rgba(111, 74, 180, .18)
-    }
-
-    .grid-qr {
+    .qr-wrap {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-3)
+      gap: 12px
     }
 
     .qrbox {
-      background: #fff;
-      border: 1px solid var(--divider);
-      border-radius: var(--radius-md);
-      padding: var(--space-3);
       display: grid;
-      gap: var(--space-2);
-      box-shadow: var(--shadow-sm)
+      place-items: center;
+      background: #fff;
+      border: 1px dashed var(--divider);
+      border-radius: 16px;
+      padding: 16px;
+      min-height: 340px;
     }
 
-    .qr-title {
+    .url-line {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap
+    }
+
+    .url-view {
+      flex: 1 1 auto;
+      min-width: 240px;
+      background: #faf9fd;
+      border: 1px solid var(--divider);
+      border-radius: 12px;
+      padding: 10px 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
       font-weight: 800;
-      text-align: center;
-      font-size: var(--fs-lg)
+      color: #4f4a60;
+      background: #efeafd;
+      border: 1px solid #dcd3fb;
+      border-radius: 999px;
+      padding: 6px 10px;
     }
 
-    .qrbox .hint {
-      text-wrap: pretty;
-      word-break: break-all
+    .ok {
+      color: #1b8f2d;
+      font-weight: 800
     }
 
-    @media (max-width:980px) {
-      .row {
-        grid-template-columns: 1fr
-      }
-
-      .grid-qr {
-        grid-template-columns: 1fr
-      }
-
-      main {
-        padding: var(--space-3)
-      }
+    .err {
+      color: #b42318;
+      font-weight: 800
     }
 
     @media (prefers-color-scheme:dark) {
@@ -219,33 +217,16 @@
         --bg: #1f1a29;
         --card: #221d2e;
         --text: #f6f1ff;
-        --muted: #c7bfd3;
-        --divider: #3a304b
+        --muted: #c9c2d2;
+        --divider: #3a304b;
+        --ring: rgba(129, 109, 206, .28);
       }
 
-      .chip {
-        background: #28203a;
-        color: #eff0f6
+      .url-view {
+        background: #2a2338
       }
 
-      .chip:hover {
-        background: #2d2442
-      }
-
-      .chip.selected {
-        border-color: #7056c9;
-        box-shadow: 0 0 0 4px rgba(129, 109, 206, .28)
-      }
-
-      .qrbox {
-        background: #241e33
-      }
-
-      .qr-title {
-        color: #fff
-      }
-
-      button {
+      .btn.ghost {
         background: #2a2338
       }
     }
@@ -253,30 +234,24 @@
 </head>
 
 <body>
-  <header class="topbar" aria-label="University Bar">
-    <div class="brand-small" aria-label="DQSD logo small">
-      <span><img src="/img/logo-dsa.png" alt="DQSD" height="50"></span>
-    </div>
-  </header>
+  <header>สร้างคิวอาร์ (ไป choose.html)</header>
 
-  <main>
+  <main class="wrap">
+    <!-- ด้านซ้าย: ฟอร์ม -->
     <section class="card">
-      <p class="hint">สแกนแล้วจะไปที่ <code>/checkin</code> ของเซิร์ฟเวอร์ จากนั้นบันทึกจำนวนและเวลาเข้า</p>
+      <h1>คิวอาร์เดียว → เปิดหน้าเลือกสนาม</h1>
+      <p class="hint">QR นี้ชี้ไปที่ <code>/choose.html?session=YYYY-MM-DD</code>
+        ผู้ใช้เลือกสนามแล้วระบบจะบันทึกแบบเงียบ</p>
 
-      <div class="row">
+      <div class="grid">
         <label for="base">Base URL</label>
-        <input id="base" type="text" placeholder="https://sports.up.ac.th" />
+        <input id="base" type="url" placeholder="https://sports.up.ac.th">
       </div>
-
-      <!-- ชิปเลือกสนาม (รายการเดียวพอ) -->
-      <div class="chips" id="chips"></div>
-
-      <div class="row">
+      <div class="grid">
         <label for="session">วันที่ (session)</label>
-        <input id="session" type="date" />
+        <input id="session" type="date">
       </div>
-
-      <div class="row">
+      <div class="grid">
         <label for="size">ขนาดภาพ (px)</label>
         <select id="size">
           <option>256</option>
@@ -285,117 +260,84 @@
         </select>
       </div>
 
-      <div class="controls">
-        <button id="btnGen">สร้าง QR ของสนามที่เลือก</button>
-        <button id="btnGenAll">สร้างชุด QR ทุกสนาม</button>
+      <div class="row-actions">
+        <button id="btnGen" class="btn primary">สร้าง / อัปเดต QR</button>
+        <button id="btnDL" class="btn ghost">ดาวน์โหลด PNG</button>
+        <button id="btnCopy" class="btn ghost">คัดลอกลิงก์</button>
       </div>
     </section>
 
+    <!-- ด้านขวา: พรีวิว -->
     <section class="card">
-      <h2>คิวอาร์ที่สร้าง</h2>
-      <div id="qrContainer" class="grid-qr"></div>
+      <h1 style="display:flex;align-items:center;gap:8px;margin:0 0 10px">
+        พรีวิวคิวอาร์ <span id="status" class="badge">พร้อม</span>
+      </h1>
+      <div class="qr-wrap">
+        <div class="qrbox">
+          <div id="qr"></div>
+        </div>
+        <div class="url-line">
+          <div id="url" class="url-view" title=""></div>
+          <a id="open" class="btn ghost" target="_blank" rel="noopener">เปิดลิงก์</a>
+        </div>
+      </div>
     </section>
   </main>
 
   <script>
-    // รายชื่อสนาม (key -> ชื่อไทย)
-    const FAC = {
-      badminton_outdoor: 'แบดมินตันกลางแจ้ง',
-      badminton_dome: 'แบดมินตันในโดม',
-      tennis: 'เทนนิส',
-      basketball: 'บาสเก็ตบอล',
-      pool: 'สระว่ายน้ำ',
-      petanque: 'เปตอง',
-      futsal: 'ฟุตซอล',
-      track: 'ลู่-ลาน',
-      volleyball: 'วอลเลย์บอล',
-      sepak_takraw: 'เซปักตะกร้อ'
-    };
-    // แปลงเป็นลิสต์ที่มี k/name ใช้งานง่าย
-    const FACILITIES = Object.entries(FAC).map(([k, name]) => ({ k, name }));
-
-    const $ = (s, p = document) => p.querySelector(s);
-    const $$ = (s, p = document) => Array.from(p.querySelectorAll(s));
     const id = k => document.getElementById(k);
 
-    // ค่าตั้งต้น
-    const today = new Date();
-    id('session').value = today.toISOString().slice(0, 10);
     id('base').value = location.origin;
+    id('session').value = new Date().toISOString().slice(0, 10);
 
-    // วาดชิปสนาม (ใช้ชุดเดียว)
-    const chipWrap = id('chips');
-    let selected = FACILITIES[0].k;
-    FACILITIES.forEach((f, idx) => {
-      const sp = document.createElement('span');
-      sp.className = 'chip' + (idx === 0 ? ' selected' : '');
-      sp.dataset.k = f.k; sp.textContent = f.name;
-      sp.addEventListener('click', () => {
-        selected = f.k;
-        $$('#chips .chip').forEach(x => x.classList.remove('selected'));
-        sp.classList.add('selected');
-      });
-      chipWrap.appendChild(sp);
-    });
-
-    // กล่อง QR
-    const qrContainer = id('qrContainer');
-    function ensureBoxes() {
-      if (qrContainer.children.length) return;
-      FACILITIES.forEach(f => {
-        const box = document.createElement('div'); box.className = 'qrbox';
-        box.innerHTML = `
-          <div class="qr-title">${f.name}</div>
-          <div id="qr-${f.k}"></div>
-          <button class="dl" data-k="${f.k}">ดาวน์โหลด</button>
-          <div class="hint" id="url-${f.k}">–</div>
-        `;
-        qrContainer.appendChild(box);
-      });
-      $$('.dl').forEach(btn => btn.addEventListener('click', () =>
-        download(id('qr-' + btn.dataset.k), `qr-${btn.dataset.k}.png`)
-      ));
+    function buildChooseUrl(base, session) {
+      try {
+        const u = new URL('/choose.html', (base || '').trim() || location.origin);
+        if (session) u.searchParams.set('session', session); return u.toString();
+      } catch { return ''; }
     }
-    ensureBoxes();
-
-    function dataURLOf(container) {
-      const img = container.querySelector('img');
-      const canvas = container.querySelector('canvas');
-      return img?.src || canvas?.toDataURL('image/png') || null;
+    function setStatus(ok, msg) {
+      const el = id('status');
+      el.textContent = msg || (ok ? 'พร้อม' : 'ตรวจสอบค่า');
+      el.className = 'badge ' + (ok ? 'ok' : 'err');
     }
-    function download(container, filename) {
-      const data = dataURLOf(container);
-      if (!data) return alert('ไม่มีภาพ');
-      const a = document.createElement('a');
-      a.href = data; a.download = filename; a.click();
+    function renderQR(text, size) {
+      const box = id('qr'); box.innerHTML = '';
+      new QRCode(box, { text, width: size, height: size, correctLevel: QRCode.CorrectLevel.M });
+      id('url').textContent = text; id('url').title = text;
+      id('open').href = text || '#'; id('open').style.pointerEvents = text ? 'auto' : 'none';
+      setStatus(!!text, text ? 'ลิงก์พร้อมใช้งาน' : 'ลิงก์ไม่ถูกต้อง');
     }
-
-    function buildUrl(base, facility, session) {
-      const u = new URL('/checkin', base || location.origin);
-      u.searchParams.set('facility', facility);
-      u.searchParams.set('session', session); // YYYY-MM-DD
-      return u.toString();
-    }
-
-    function renderQR(container, text, size) {
-      container.innerHTML = '';
-      new QRCode(container, { text, width: size, height: size, correctLevel: QRCode.CorrectLevel.M });
-    }
-
-    function genOne(key) {
-      const base = id('base').value.trim() || location.origin;
-      const session = id('session').value;
+    function gen() {
+      const base = id('base').value; const session = id('session').value;
       const size = parseInt(id('size').value, 10) || 320;
-      const url = buildUrl(base, key, session);
-      renderQR(id('qr-' + key), url, size);
-      id('url-' + key).textContent = url;
+      const url = buildChooseUrl(base, session);
+      if (!url) { setStatus(false, 'Base URL ไม่ถูกต้อง'); return; }
+      renderQR(url, size);
     }
-
-    id('btnGen').addEventListener('click', () => genOne(selected));
-    id('btnGenAll').addEventListener('click', () => FACILITIES.forEach(f => genOne(f.k)));
-
-    // เรนเดอร์ชุดแรกตอนโหลด (สร้างทั้งหมดให้พร้อมดาวน์โหลด)
-    FACILITIES.forEach(f => genOne(f.k));
+    function downloadPNG() {
+      const img = id('qr').querySelector('img');
+      const canvas = id('qr').querySelector('canvas');
+      const data = img?.src || canvas?.toDataURL('image/png');
+      if (!data) return alert('ยังไม่มีภาพ QR');
+      const a = document.createElement('a'); a.href = data; a.download = 'qr-choose.png'; a.click();
+    }
+    async function copyLink() {
+      const txt = id('url').textContent.trim(); if (!txt) return;
+      try {
+        await navigator.clipboard.writeText(txt);
+        setStatus(true, 'คัดลอกลิงก์แล้ว');
+        setTimeout(() => setStatus(true, 'ลิงก์พร้อมใช้งาน'), 1200);
+      } catch { setStatus(false, 'คัดลอกไม่สำเร็จ'); }
+    }
+    ['base', 'session', 'size'].forEach(k => {
+      id(k).addEventListener('input', gen);
+      id(k).addEventListener('change', gen);
+    });
+    id('btnGen').addEventListener('click', gen);
+    id('btnDL').addEventListener('click', downloadPNG);
+    id('btnCopy').addEventListener('click', copyLink);
+    gen();
   </script>
 </body>
 
