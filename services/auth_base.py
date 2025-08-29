@@ -1,9 +1,0 @@
-from abc import ABC, abstractmethod
-from typing import Dict, Optional
-class AuthService(ABC):
-    @abstractmethod
-    def build_auth_url(self) -> str: ...
-    @abstractmethod
-    def redeem_token(self, auth_response_params: Dict[str, str]) -> Dict: ...
-    @abstractmethod
-    def get_user_claims(self, token_result: Dict) -> Optional[Dict]: ...
