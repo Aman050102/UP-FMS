@@ -7,7 +7,7 @@
   <!-- Favicon -->
   <link rel="icon" href="../../img/Logo_of_University_of_Phayao.svg.png" type="image/png">
 
-  <title>กองพัฒนาคุณภาพนิสิตและนิสิตพิการ – เข้าสู่ระบบ</title>
+  <title>กองกิจการนิสิต เข้าสู่ระบบ</title>
   <meta name="color-scheme" content="light dark">
 
   <!-- Stylesheets -->
@@ -15,6 +15,7 @@
 
   <!-- JavaScript -->
   <script src="js/login.js" defer></script>
+
 </head>
 <body>
   <!-- แถบบนพร้อมโลโก้ย่อ -->

@@ -4,215 +4,32 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1280, initial-scale=1" />
-    <link rel="icon" href="/img/Logo_of_University_of_Phayao.svg.png" type="image/png">
-    <title>QR สแกน → เข้าสู่ระบบ → เช็คอิน</title>
+    <link rel="icon" href="/public/img/Logo_of_University_of_Phayao.svg.png" type="image/png">
+    <title>UP-FMS - QR เช็คอิน</title>
     <meta name="color-scheme" content="light dark">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/public/assets/css/QRCode.css">
 
-    <style>
-        :root {
-            --brand: #6f4ab4;
-            --bg: #f7f6fb;
-            --card: #fff;
-            --text: #1b1a21;
-            --muted: #6b657a;
-            --divider: #e7e3ef;
-            --shadow: 0 12px 30px rgba(30, 16, 60, .12);
-            --radius-lg: 22px;
-            --radius-md: 14px;
-        }
+    <!-- JavaScript -->
+    <script src="/public/js/QRCode.js" defer></script>
 
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-        }
-
-        body {
-            font-family: ui-sans-serif, system-ui, -apple-system, "Noto Sans Thai", Roboto, Arial, sans-serif;
-            color: var(--text);
-            background: linear-gradient(180deg, var(--brand) 0 84px, var(--bg) 84px 100%);
-            overflow: hidden;
-        }
-
-        /* Header */
-        header {
-            height: 84px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 0 24px;
-            color: #fff;
-            font-weight: 900;
-        }
-
-        header img {
-            height: 60px;
-            width: auto;
-            display: block;
-        }
-
-        header h1 {
-            font-size: 22px;
-            margin: 0;
-            line-height: 1.2;
-        }
-
-        /* Layout */
-        .stage {
-            width: 1280px;
-            height: calc(720px - 84px);
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 640px 640px;
-            align-items: stretch;
-        }
-
-        .col {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 22px;
-        }
-
-        .card {
-            width: 596px;
-            height: 100%;
-            background: var(--card);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
-            padding: 22px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        h2 {
-            font-size: 20px;
-            margin: 0 0 6px
-        }
-
-        .hint {
-            color: var(--muted);
-            margin: 0
-        }
-
-        .form {
-            margin-top: 8px;
-            display: grid;
-            grid-template-columns: 180px 1fr;
-            gap: 12px;
-            align-items: center;
-        }
-
-        label {
-            font-weight: 700
-        }
-
-        input,
-        select,
-        button {
-            padding: 12px 14px;
-            border: 1px solid var(--divider);
-            border-radius: var(--radius-md);
-            background: #fff;
-            font-weight: 700;
-            font-size: 16px;
-        }
-
-        .actions {
-            display: flex;
-            gap: 12px;
-            margin-top: 10px;
-        }
-
-        .btn {
-            cursor: pointer;
-            transition: transform .05s, filter .15s;
-        }
-
-        .btn:active {
-            transform: translateY(1px);
-        }
-
-        .primary {
-            background: linear-gradient(180deg, #7b57c6, #6f4ab4);
-            color: #fff;
-            border: 0
-        }
-
-        /* QR Preview */
-        .qr-pane {
-            gap: 14px;
-            display: flex;
-            flex-direction: column;
-            flex: 1 1 auto;
-        }
-
-        .qrbox {
-            flex: 1 1 auto;
-            border: 1px dashed var(--divider);
-            border-radius: 18px;
-            background: #fff;
-            display: grid;
-            place-items: center;
-        }
-
-        .qr-inner {
-            width: 512px;
-            height: 512px;
-            display: grid;
-            place-items: center;
-        }
-
-        .url-line {
-            display: flex;
-            gap: 12px;
-            align-items: center
-        }
-
-        .url-view {
-            flex: 1 1 auto;
-            background: #faf9fd;
-            border: 1px solid var(--divider);
-            border-radius: 12px;
-            padding: 10px 12px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .badge {
-            font-size: 12px;
-            font-weight: 800;
-            background: #efeafd;
-            padding: 6px 10px;
-            border-radius: 999px;
-        }
-
-        .ok {
-            color: #177d2a
-        }
-
-        .err {
-            color: #b42318
-        }
-    </style>
 </head>
 
 <body>
     <header>
-        <img src="/img/Logo_of_University_of_Phayao.svg.png" alt="UP Logo">
-        <h1>QR สแกน → เข้าสู่ระบบก่อน → ไปหน้าเช็คอิน</h1>
+        <img src="/public/img/logo-dsa.png" alt="UP Logo">
     </header>
 
+    <br>
     <main class="stage">
         <!-- Left: Form -->
         <div class="col">
             <section class="card">
-                <h2>สร้างคิวอาร์ (ล็อกอินก่อนเสมอ)</h2>
-                <p class="hint">QR จะพาไป <code>/auth/auth.php?role=person&next=/choose.php?session=YYYY-MM-DD</code>
-                </p>
+                <h2>สร้างคิวอาร์</h2>
+                <!-- <p class="hint">QR จะพาไป <code>/auth/auth.php?role=person&next=/choose.php?session=YYYY-MM-DD</code>
+                </p> -->
 
                 <div class="form">
                     <label for="base">Base URL</label>
@@ -246,47 +63,12 @@
                 </div>
                 <div class="url-line">
                     <div id="url" class="url-view"></div>
-                    <a id="open" class="btn" href="#" target="_blank">เปิดลิงก์</a>
+                    <a id="open" class="btn" href="" target="_blank">เปิดลิงก์</a>
                 </div>
             </section>
         </div>
     </main>
 
-    <script>
-        const $ = id => document.getElementById(id);
-
-        function normalizeBase(base) {
-            let b = (base || '').trim(); if (!b) return '';
-            if (!/^https?:\/\//i.test(b)) b = 'https://' + b;
-            try { const u = new URL(b); u.hash = ''; u.search = ''; return u.toString().replace(/\/+$/, ''); }
-            catch { return ''; }
-        }
-
-        function buildUrl(base, session) {
-            const safeBase = normalizeBase(base); if (!safeBase) return '';
-            const next = '/choose.php?session=' + encodeURIComponent(session || '');
-            const u = new URL('/auth/auth.php', safeBase + '/');
-            u.searchParams.set('role', 'person');
-            u.searchParams.set('next', next);
-            return u.toString();
-        }
-
-        function renderQR(text, size) {
-            const box = $('qr'); box.innerHTML = '';
-            if (!text) { $('status').textContent = 'Base URL ไม่ถูกต้อง'; $('status').className = 'badge err'; return; }
-            new QRCode(box, { text, width: +size, height: +size });
-            $('url').textContent = text; $('open').href = text;
-            $('status').textContent = 'ลิงก์พร้อมใช้งาน'; $('status').className = 'badge ok';
-        }
-
-        function gen() {
-            const base = $('base').value, session = $('session').value, size = $('size').value;
-            renderQR(buildUrl(base, session), size);
-        }
-
-        $('btnGen').onclick = gen;
-        window.onload = () => { $('session').value = new Date().toISOString().slice(0, 10); gen(); };
-    </script>
 </body>
 
 </html>

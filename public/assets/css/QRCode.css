@@ -1,0 +1,187 @@
+:root {
+    --brand: #6f4ab4;
+    --bg: #f7f6fb;
+    --card: #fff;
+    --text: #1b1a21;
+    --muted: #6b657a;
+    --divider: #e7e3ef;
+    --shadow: 0 12px 30px rgba(30, 16, 60, .12);
+    --radius-lg: 22px;
+    --radius-md: 14px;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Noto Sans Thai", Roboto, Arial, sans-serif;
+    color: var(--text);
+    background: linear-gradient(180deg, var(--brand) 0 84px, var(--bg) 84px 100%);
+    overflow: hidden;
+}
+
+/* Header */
+header {
+    height: 84px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 24px;
+    color: #fff;
+    font-weight: 900;
+}
+
+header img {
+    height: 60px;
+    width: auto;
+    display: block;
+}
+
+header h1 {
+    font-size: 22px;
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* Layout */
+.stage {
+    width: 1280px;
+    height: calc(720px - 84px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 640px 640px;
+    align-items: stretch;
+}
+
+.col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+}
+
+.card {
+    width: 596px;
+    height: 100%;
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+h2 {
+    font-size: 20px;
+    margin: 0 0 6px
+}
+
+.hint {
+    color: var(--muted);
+    margin: 0
+}
+
+.form {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 12px;
+    align-items: center;
+}
+
+label {
+    font-weight: 700
+}
+
+input,
+select,
+button {
+    padding: 12px 14px;
+    border: 1px solid var(--divider);
+    border-radius: var(--radius-md);
+    background: #fff;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.btn {
+    cursor: pointer;
+    transition: transform .05s, filter .15s;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.primary {
+    background: linear-gradient(180deg, #7b57c6, #6f4ab4);
+    color: #fff;
+    border: 0
+}
+
+/* QR Preview */
+.qr-pane {
+    gap: 14px;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.qrbox {
+    flex: 1 1 auto;
+    border: 1px dashed var(--divider);
+    border-radius: 18px;
+    background: #fff;
+    display: grid;
+    place-items: center;
+}
+
+.qr-inner {
+    width: 512px;
+    height: 512px;
+    display: grid;
+    place-items: center;
+}
+
+.url-line {
+    display: flex;
+    gap: 12px;
+    align-items: center
+}
+
+.url-view {
+    flex: 1 1 auto;
+    background: #faf9fd;
+    border: 1px solid var(--divider);
+    border-radius: 12px;
+    padding: 10px 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.badge {
+    font-size: 12px;
+    font-weight: 800;
+    background: #efeafd;
+    padding: 6px 10px;
+    border-radius: 999px;
+}
+
+.ok {
+    color: #177d2a
+}
+
+.err {
+    color: #b42318
+}
