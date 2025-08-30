@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Favicon -->
-  <link rel="icon" href="../../img/Logo_of_University_of_Phayao.svg.png" type="image/png">
+  <!-- Favicon: ใช้พาธจาก web root -->
+  <link rel="icon" href="/img/Logo_of_University_of_Phayao.svg.png" type="image/png">
 
-  <title>สร้างคิวอาร์เข้าเลือกสนาม (QR เดียว)</title>
+  <title>สร้างคิวอาร์สำหรับเข้าสู่ระบบและเช็คอิน</title>
   <meta name="color-scheme" content="light dark">
 
   <!-- QRCode.js -->
@@ -28,10 +29,16 @@
       --radius-md: 14px;
     }
 
-    * { box-sizing: border-box }
+    * {
+      box-sizing: border-box
+    }
 
-    html, body {
-      height: 100%;
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
       margin: 0;
       font-family: ui-sans-serif, system-ui, -apple-system, "Noto Sans Thai", Roboto, Arial, sans-serif;
       color: var(--text);
@@ -39,8 +46,12 @@
     }
 
     header {
-      height: 76px; display: flex; align-items: center;
-      padding: 0 18px; color: #fff; font-weight: 900;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      padding: 0 18px;
+      color: #fff;
+      font-weight: 900
     }
 
     .wrap {
@@ -48,103 +59,205 @@
       padding: 24px;
       display: grid;
       gap: 24px;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr
     }
 
     .card {
       background: var(--card);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-md);
-      padding: 22px; width: 100%;
+      padding: 22px;
+      width: 100%
     }
 
-    h1 { font-size: 22px; margin: 0 0 8px }
+    h1 {
+      font-size: 22px;
+      margin: 0 0 8px
+    }
 
-    .hint { color: var(--muted); font-size: 14px; margin: 0 }
+    .hint {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0
+    }
 
     .grid {
-      display: grid; gap: 14px;
+      display: grid;
+      gap: 14px;
       grid-template-columns: minmax(180px, 220px) 1fr;
-      align-items: center; margin-top: 14px;
+      align-items: center;
+      margin-top: 14px
     }
 
-    @media (max-width:960px) { .wrap { grid-template-columns: 1fr; } }
-    @media (max-width:760px) { .grid { grid-template-columns: 1fr } }
-
-    input, select, button {
-      padding: 12px 14px; border: 1px solid var(--divider);
-      border-radius: var(--radius-md); font-weight: 700; background: #fff;
+    @media (max-width:960px) {
+      .wrap {
+        grid-template-columns: 1fr
+      }
     }
-    input, select {
-      width: 100%; outline: none; transition: border-color .15s, box-shadow .15s;
-    }
-    input:focus, select:focus { border-color: #b9ace8; box-shadow: 0 0 0 5px var(--ring); }
 
-    .row-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+    @media (max-width:760px) {
+      .grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    input,
+    select,
+    button {
+      padding: 12px 14px;
+      border: 1px solid var(--divider);
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      background: #fff
+    }
+
+    input,
+    select {
+      width: 100%;
+      outline: none;
+      transition: border-color .15s, box-shadow .15s
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #b9ace8;
+      box-shadow: 0 0 0 5px var(--ring)
+    }
+
+    .row-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px
+    }
 
     .btn {
-      cursor: pointer; background: #fff;
+      cursor: pointer;
+      background: #fff;
       transition: transform .05s, box-shadow .15s, background .15s;
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-sm)
     }
-    .btn:hover { background: #faf9fd }
-    .btn:active { transform: translateY(1px) }
-    .btn.primary { background: linear-gradient(180deg, #7b57c6, #6f4ab4); color: #fff; border: 0; }
-    .btn.primary:hover { filter: brightness(.98) }
-    .btn.ghost { background: #fff }
 
-    .qr-wrap { display: grid; gap: 12px }
+    .btn:hover {
+      background: #faf9fd
+    }
+
+    .btn:active {
+      transform: translateY(1px)
+    }
+
+    .btn.primary {
+      background: linear-gradient(180deg, #7b57c6, #6f4ab4);
+      color: #fff;
+      border: 0
+    }
+
+    .btn.primary:hover {
+      filter: brightness(.98)
+    }
+
+    .btn.ghost {
+      background: #fff
+    }
+
+    .qr-wrap {
+      display: grid;
+      gap: 12px
+    }
+
     .qrbox {
-      display: grid; place-items: center; background: #fff;
-      border: 1px dashed var(--divider); border-radius: 16px;
-      padding: 16px; min-height: 340px;
+      display: grid;
+      place-items: center;
+      background: #fff;
+      border: 1px dashed var(--divider);
+      border-radius: 16px;
+      padding: 16px;
+      min-height: 340px
     }
 
-    .url-line { display: flex; gap: 10px; align-items: center; flex-wrap: wrap }
+    .url-line {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap
+    }
+
     .url-view {
-      flex: 1 1 auto; min-width: 240px;
-      background: #faf9fd; border: 1px solid var(--divider);
-      border-radius: 12px; padding: 10px 12px;
-      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      flex: 1 1 auto;
+      min-width: 240px;
+      background: #faf9fd;
+      border: 1px solid var(--divider);
+      border-radius: 12px;
+      padding: 10px 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 12px; font-weight: 800; color: #4f4a60;
-      background: #efeafd; border: 1px solid #dcd3fb;
-      border-radius: 999px; padding: 6px 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #4f4a60;
+      background: #efeafd;
+      border: 1px solid #dcd3fb;
+      border-radius: 999px;
+      padding: 6px 10px
     }
-    .ok { color: #1b8f2d; font-weight: 800 }
-    .err { color: #b42318; font-weight: 800 }
+
+    .ok {
+      color: #1b8f2d;
+      font-weight: 800
+    }
+
+    .err {
+      color: #b42318;
+      font-weight: 800
+    }
 
     @media (prefers-color-scheme:dark) {
       :root {
-        --bg: #1f1a29; --card: #221d2e; --text: #f6f1ff;
-        --muted: #c9c2d2; --divider: #3a304b; --ring: rgba(129, 109, 206, .28);
+        --bg: #1f1a29;
+        --card: #221d2e;
+        --text: #f6f1ff;
+        --muted: #c9c2d2;
+        --divider: #3a304b;
+        --ring: rgba(129, 109, 206, .28)
       }
-      .url-view { background: #2a2338 }
-      .btn.ghost { background: #2a2338 }
+
+      .url-view {
+        background: #2a2338
+      }
+
+      .btn.ghost {
+        background: #2a2338
+      }
     }
   </style>
 </head>
 
 <body>
-  <header>สร้างคิวอาร์ (ไป choose.html)</header>
+  <header>สร้างคิวอาร์: เข้าสู่ระบบ → เช็คอิน</header>
 
   <main class="wrap">
-    <!-- ซ้าย: ฟอร์ม -->
+    <!-- ฟอร์มตั้งค่า -->
     <section class="card">
-      <h1>คิวอาร์เดียว → เปิดหน้าเลือกสนาม</h1>
-      <p class="hint">QR นี้ชี้ไปที่ <code>/choose.html?session=YYYY-MM-DD</code> ผู้ใช้เลือกสนามแล้วระบบจะบันทึกแบบเงียบ</p>
+      <h1>คิวอาร์เดียวสำหรับ “เข้าสู่ระบบแล้วไปหน้าเช็คอิน”</h1>
+      <p class="hint">QR จะพาไป <code>/auth/auth.php?role=person&amp;next=/choose.php?session=YYYY-MM-DD</code> (SSO
+        จำลอง)</p>
 
       <div class="grid">
         <label for="base">Base URL</label>
         <input id="base" type="url" placeholder="https://sports.up.ac.th" inputmode="url" autocomplete="url">
       </div>
+
       <div class="grid">
         <label for="session">วันที่ (session)</label>
         <input id="session" type="date">
       </div>
+
       <div class="grid">
         <label for="size">ขนาดภาพ (px)</label>
         <select id="size">
@@ -161,7 +274,7 @@
       </div>
     </section>
 
-    <!-- ขวา: พรีวิว -->
+    <!-- พรีวิว -->
     <section class="card">
       <h1 style="display:flex;align-items:center;gap:8px;margin:0 0 10px">
         พรีวิวคิวอาร์ <span id="status" class="badge" aria-live="polite">พร้อม</span>
@@ -181,15 +294,11 @@
   <script>
     const id = k => document.getElementById(k);
 
-    // เติมค่าเริ่มต้น
+    // ค่าตั้งต้น
     (function initDefaults() {
-      const savedBase = localStorage.getItem('qr_base');
-      const savedSession = localStorage.getItem('qr_session');
-      const savedSize = localStorage.getItem('qr_size');
-
-      id('base').value = savedBase || location.origin;
-      id('session').value = savedSession || new Date().toISOString().slice(0, 10);
-      id('size').value = savedSize || '320';
+      id('base').value = localStorage.getItem('qr_base') || location.origin;
+      id('session').value = localStorage.getItem('qr_session') || new Date().toISOString().slice(0, 10);
+      id('size').value = localStorage.getItem('qr_size') || '320';
     })();
 
     function savePrefs() {
@@ -199,26 +308,25 @@
     }
 
     function normalizeBase(base) {
-      // ตัดช่องว่าง, ถ้าไม่มี protocol ใส่ https:// ให้
       let b = (base || '').trim();
       if (!b) return '';
       if (!/^https?:\/\//i.test(b)) b = 'https://' + b;
-      // ลบ # และ query ทิ้ง
       try {
         const u = new URL(b);
         u.hash = ''; u.search = '';
         return u.toString().replace(/\/+$/, ''); // ตัด / ท้าย
-      } catch { return ''; }
+      } catch { return '' }
     }
 
-    function buildChooseUrl(base, session) {
+    // สร้าง URL ปลายทาง: /auth/auth.php?role=person&next=/choose.php?session=YYYY-MM-DD
+    function buildLoginThenChooseUrl(base, session) {
       const safeBase = normalizeBase(base);
       if (!safeBase) return '';
-      try {
-        const u = new URL('/choose.html', safeBase + '/');
-        if (session) u.searchParams.set('session', session);
-        return u.toString();
-      } catch { return ''; }
+      const next = '/choose.php?session=' + encodeURIComponent(session || '');
+      const url = new URL('/auth/auth.php', safeBase + '/');
+      url.searchParams.set('role', 'person'); // ปรับเป็น 'staff' ได้หากต้องการ
+      url.searchParams.set('next', next);
+      return url.toString();
     }
 
     function setStatus(ok, msg) {
@@ -228,21 +336,16 @@
     }
 
     function renderQR(text, size) {
-      const box = id('qr');
-      box.innerHTML = '';
+      const box = id('qr'); box.innerHTML = '';
       if (!text) {
         setStatus(false, 'Base URL ไม่ถูกต้อง');
-        id('url').textContent = '';
-        id('url').title = '';
-        id('open').href = '#';
-        id('open').style.pointerEvents = 'none';
+        id('url').textContent = ''; id('url').title = '';
+        id('open').href = '#'; id('open').style.pointerEvents = 'none';
         return;
       }
       new QRCode(box, { text, width: size, height: size, correctLevel: QRCode.CorrectLevel.M });
-      id('url').textContent = text;
-      id('url').title = text;
-      id('open').href = text;
-      id('open').style.pointerEvents = 'auto';
+      id('url').textContent = text; id('url').title = text;
+      id('open').href = text; id('open').style.pointerEvents = 'auto';
       setStatus(true, 'ลิงก์พร้อมใช้งาน');
     }
 
@@ -251,23 +354,17 @@
       const base = id('base').value;
       const session = id('session').value;
       const size = parseInt(id('size').value, 10) || 320;
-      const url = buildChooseUrl(base, session);
+      const url = buildLoginThenChooseUrl(base, session);
       renderQR(url, size);
     }
 
     function downloadPNG() {
       const img = id('qr').querySelector('img');
-      const canvas = id('qr').querySelector('canvas');
-      const data = img?.src || canvas?.toDataURL('image/png');
-      if (!data) {
-        alert('ยังไม่มีภาพ QR');
-        return;
-      }
+      const cvs = id('qr').querySelector('canvas');
+      const data = img?.src || cvs?.toDataURL('image/png');
+      if (!data) { alert('ยังไม่มีภาพ QR'); return; }
       const nameDate = (id('session').value || 'session').replaceAll(/[^0-9\-]/g, '');
-      const a = document.createElement('a');
-      a.href = data;
-      a.download = `qr-choose-${nameDate}.png`;
-      a.click();
+      const a = document.createElement('a'); a.href = data; a.download = `qr-login-checkin-${nameDate}.png`; a.click();
     }
 
     async function copyLink() {
@@ -291,8 +388,8 @@
     id('btnDL').addEventListener('click', downloadPNG);
     id('btnCopy').addEventListener('click', copyLink);
 
-    // สร้างครั้งแรก
     window.addEventListener('load', gen);
   </script>
 </body>
+
 </html>
