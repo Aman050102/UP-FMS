@@ -82,8 +82,8 @@ Software Engineering Department, University of Phayao, Academic Year 2025**
 ---
 
 ##  Suggested Technologies | เทคโนโลยีที่อาจใช้
-- **Frontend**: HTML / CSS / JavaScript / Vue.js  
-- **Backend**: Node.js / Python / Java  
+- **Frontend**: HTML / CSS / JavaScript  
+- **Backend**: Node.js / Python / Java / PHP
 - **Database**: MySQL  
 - **Authentication**: QR Code + Role-based Access  
 - **Visualization**: Chart.js / D3.js  
