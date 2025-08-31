@@ -29,6 +29,7 @@ $displayName = $_SESSION['user']['name']
     <div class="brand">
       <img src="/img/logo-dsa.png" alt="DSA">
       <img src="/img/logoDSASMART.png" alt="DSA">
+      <img src="/img/image-Photoroom.png" alt="DSA">
     </div>
 
     <!-- ขวาบน: ชื่อผู้ใช้ + ออกจากระบบ -->
