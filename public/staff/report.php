@@ -48,8 +48,8 @@ if (!(isset($_GET['demo']) && $_GET['demo'] === '1')) {
 </head>
 <body>
   <header class="topbar" aria-label="University Bar">
-    <div class="brand-small" aria-label="DQSD logo small">
-      <span><img src="../../img/logo-dsa.png" alt="DSA" height="50"></span>
+     <div class="brand">
+      <img src="/img/logoDSASMART.png" alt="DSA" class="brand-logo">
     </div>
   </header>
 
