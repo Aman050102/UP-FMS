@@ -32,6 +32,7 @@ $displayName = $_SESSION['user']['name']
 
     <!-- ขวาบน: ชื่อผู้ใช้ + ออกจากระบบ -->
     <div class="righttools">
+      <span class="user-btn" aria-label="ผู้ใช้ปัจจุบัน">
         <!-- ไอคอนผู้ใช้เล็ก ๆ -->
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -105,3 +106,5 @@ $displayName = $_SESSION['user']['name']
   </main>
 </body>
 </html>
+
+
