@@ -37,6 +37,11 @@ header {
     font-weight: 900
 }
 
+.brand img {
+    height: 120px;
+    object-fit: contain
+}
+
 main {
     min-height: calc(100% - 90px);
     padding: 18px;

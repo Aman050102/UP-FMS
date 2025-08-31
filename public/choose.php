@@ -20,9 +20,9 @@ require __DIR__ . '/../middlewares/require_person.php';
 
 <body>
   <div class="wrap">
-    <header aria-label="University Bar">
-      <img class="logo" src="/img/logo-dsa.png" alt="DSA">
-    </header>
+    <div class="brand">
+      <img src="/img/logoDSASMART.png" alt="DSA" class="brand-logo">
+    </div>
 
     <main>
       <section class="card">
