@@ -55,7 +55,7 @@ $displayName = $_SESSION['user']['name']
     <div class="section-title">เมนูหลักสำหรับเจ้าหน้าที่</div>
 
     <section class="grid" aria-label="เมนูด่วน">
-      <a class="tile" href="/staff/generator_checkin.php">
+      <a class="tile" href="/tools/qr-checkin.php">
         <div class="tile-inner">
           <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm6 0h2v2h-2V5zm4 0h6v6h-6V5zm2 2v2h2V7h-2zm-8 6h2v2H9v-2zm-6 0h4v4H3v-4zm2 2v0m8 0h2v2h-2v-2zm4 0h2v6h-6v-2h4v-4zm-12 4h2v2H5v-2z" fill="currentColor"/></svg>
           <b>สร้างคิวอาร์โค้ด<br>Check in</b>
