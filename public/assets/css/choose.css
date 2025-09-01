@@ -1,5 +1,4 @@
-/* /public/assets/css/choose.css  — combined, tidy, responsive */
-
+/* /public/css/choose.css  (เวอร์ชันจัดระเบียบ) */
 /* ---------- Theme tokens ---------- */
 :root {
     --brand: #6f4ab4;
@@ -11,11 +10,11 @@
     --muted: #6b657a;
     --divider: #e7e3ef;
     --shadow: 0 12px 30px rgba(30, 16, 60, .12);
-    --hbar: 92px;
-    /* ความสูง header ให้เท่าหน้าสตาฟ */
+    --hbar: 80px;
+    /* ความสูง header */
 }
 
-/* Dark mode */
+/* โหมดมืด */
 @media (prefers-color-scheme:dark) {
     :root {
         --bg: #1f1a29;
@@ -50,27 +49,29 @@ body {
     flex-direction: column;
 }
 
-/* ---------- Header (เหมือนหน้าสตาฟ) ---------- */
-header.topbar {
+/* ---------- Header (โลโก้ชิดซ้าย ขนาดคงที่) ---------- */
+header {
     height: var(--hbar);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 clamp(16px, 4vw, 32px);
-    color: #fff;
-    font-weight: 800;
+    padding: 0 clamp(14px, 3vw, 22px);
     background: transparent;
 }
 
-/* ซ้าย: โลโก้ + (ชื่อหน่วยงานถ้ามี) */
+header .logo {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* ถ้าหน้าไหนมี .brand ก็ใช้ได้เหมือนกัน (กันซ้ำกับโค้ดเก่า) */
 .brand {
     display: flex;
     align-items: center;
     gap: 12px;
-    min-width: 0;
 }
 
-.brand-logo {
+.brand img {
     height: 100px;
     width: auto;
     object-fit: contain;
@@ -89,33 +90,6 @@ header.topbar {
 .brand .title small {
     opacity: .9;
     font-weight: 700;
-}
-
-/* ขวา: ชื่อผู้ใช้ + ออกจากระบบ (ถ้ามี) */
-.righttools {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.user-btn,
-.logout {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 14px;
-    border: 1px solid rgba(255, 255, 255, .35);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, .1);
-    color: #fff;
-    text-decoration: none;
-    transition: background .15s, border-color .15s;
-}
-
-.user-btn:hover,
-.logout:hover {
-    background: rgba(255, 255, 255, .16);
-    border-color: rgba(255, 255, 255, .6);
 }
 
 /* ---------- Main layout ---------- */
@@ -187,11 +161,11 @@ input[type="date"] {
 
 .btn:hover {
     background: #faf9fd;
-    box-shadow: 0 6px 18px rgba(30, 16, 60, .08)
+    box-shadow: 0 6px 18px rgba(30, 16, 60, .08);
 }
 
 .btn:active {
-    transform: translateY(1px)
+    transform: translateY(1px);
 }
 
 /* ---------- Grid ปุ่มเลือกสนาม ---------- */
@@ -248,25 +222,6 @@ input[type="date"] {
 }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 720px) {
-    header.topbar {
-        height: 84px;
-    }
-
-    .brand-logo {
-        height: 46px;
-    }
-
-    .brand .title b {
-        font-size: 18px;
-    }
-
-    .user-btn,
-    .logout {
-        padding: 8px 10px;
-    }
-}
-
 @media (max-width: 640px) {
     .row {
         grid-template-columns: 1fr;
@@ -276,4 +231,11 @@ input[type="date"] {
         grid-template-columns: 1fr 1fr;
         gap: 12px;
     }
+
+    header .logo,
+    .brand img {
+        height: 44px;
+    }
+
+    /* ลดโลโก้บนจอเล็ก */
 }

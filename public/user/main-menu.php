@@ -7,7 +7,7 @@ session_start();
 $displayName = $_SESSION['user']['name'] 
   ?? $_SESSION['user']['display_name'] 
   ?? $_SESSION['user']['username'] 
-  ?? 'เจ้าหน้าที่';
+  ?? 'ผู้ใช้งาน';
 ?>
 
 <!doctype html>
@@ -16,11 +16,11 @@ $displayName = $_SESSION['user']['name']
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>UP-FMS · เมนูเจ้าหน้าที่</title>
+<title>UP-FMS · เมนูหลักสำหรับนิสิตและบุคลากร</title>
 <link rel="icon" href="/img/Logo_of_University_of_Phayao.svg.png" type="image/png">
 <meta name="color-scheme" content="light dark">
 
-<link rel="stylesheet" href="/assets/css/staff_console.css">
+<link rel="stylesheet" href="/assets/css/main-menu.css">
 
 
 </head>
@@ -52,15 +52,30 @@ $displayName = $_SESSION['user']['name']
   </header>
 
   <main>
-    <div class="section-title">เมนูหลักสำหรับเจ้าหน้าที่</div>
+    <div class="section-title">เมนูหลักสำหรับนิสิตและบุคลากร</div>
 
     <section class="grid" aria-label="เมนูด่วน">
-      
+      <a class="tile" href="/choose.php">
+        <div class="tile-inner">
+          <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm6 0h2v2h-2V5zm4 0h6v6h-6V5zm2 2v2h2V7h-2zm-8 6h2v2H9v-2zm-6 0h4v4H3v-4zm2 2v0m8 0h2v2h-2v-2zm4 0h2v6h-6v-2h4v-4zm-12 4h2v2H5v-2z" fill="currentColor"/></svg>
+          <b>Check in</b>
+          <small>เช็คอินเลือกเข้าสนาม</small>
+        </div>
+      </a>
+
+      <a class="tile" href="/staff/generator_checkout_pool.php">
+        <div class="tile-inner">
+          <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm12 0h6v2h-6v6h-2v-8h2z" fill="currentColor"/></svg>
+          <b>Check out </b>
+          <small>เฉพาะผู้ใช้สระ</small>
+        </div>
+      </a>
+
       <a class="tile" href="/staff/equipment.php">
         <div class="tile-inner">
           <svg viewBox="0 0 24 24"><path d="M4 7h12l4 5-4 5H4l4-5-4-5z" fill="currentColor"/></svg>
           <b>ยืม-คืน อุปกรณ์กีฬา</b>
-          <small>จัดการรายการ/สต็อก</small>
+          <!-- <small>จัดการรายการ/สต็อก</small> -->
         </div>
       </a>
 
@@ -68,23 +83,7 @@ $displayName = $_SESSION['user']['name']
         <div class="tile-inner">
           <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16M8 6v12M16 6v12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
           <b>จองสนามแบดมินตัน</b>
-          <small>บริหารคอร์ท</small>
-        </div>
-      </a>
-
-      <a class="tile" href="/staff/report.php">
-        <div class="tile-inner">
-          <svg viewBox="0 0 24 24"><path d="M4 19h16M6 17V7m6 10V5m6 12V9" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-          <b>ข้อมูลการเข้าใช้สนาม</b>
-          <small>ดู/ค้นหา/ดาวน์โหลด</small>
-        </div>
-      </a>
-
-      <a class="tile" href="/staff/borrow_stats.php">
-        <div class="tile-inner">
-          <svg viewBox="0 0 24 24"><path d="M3 12l5 5 13-13" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-          <b>ข้อมูลสถิติการยืม-คืน</b>
-          <small>สรุปยอด/แนวโน้ม</small>
+          <!-- <small>บริหารคอร์ท</small> -->
         </div>
       </a>
     </section>

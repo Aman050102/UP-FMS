@@ -25,6 +25,7 @@ body {
     background: linear-gradient(180deg, var(--brand) 0 92px, var(--bg) 92px 100%)
 }
 
+/* Header */
 header.topbar {
     height: 92px;
     display: flex;
@@ -32,7 +33,7 @@ header.topbar {
     justify-content: space-between;
     padding: 0 clamp(16px, 4vw, 32px);
     color: #fff;
-    font-weight: 800
+    font-weight: 800;
 }
 
 .brand {
@@ -41,74 +42,48 @@ header.topbar {
     gap: 12px
 }
 
-.brand img {
-    height: 120px;
+.brand-logo {
+    height: 100px;
+    width: auto;
     object-fit: contain
 }
 
-.brand .title {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1
-}
+/* ให้พอดีหัวเว็บ */
 
-.brand .title b {
-    font-size: 20px
-}
-
-.brand .title small {
-    opacity: .9;
-    font-weight: 700
-}
-
+/* ขวาบน: ชื่อผู้ใช้ & logout */
 .righttools {
     display: flex;
     align-items: center;
     gap: 10px
 }
 
-.user-btn {
+.user-btn,
+.logout {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 10px 14px;
     border: 1px solid rgba(255, 255, 255, .35);
     border-radius: 12px;
-    background: rgba(255, 255, 255, .1);
+    background: rgba(255, 255, 255, .10);
     color: #fff;
     text-decoration: none;
-    cursor: pointer
 }
 
-.user-btn:hover {
-    background: rgba(255, 255, 255, .16);
-    border-color: rgba(255, 255, 255, .6)
-}
-
-.logout {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-left: 8px;
-    padding: 10px 12px;
-    border: 1px solid rgba(255, 255, 255, .35);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, .1);
-    color: #fff;
-    text-decoration: none
-}
-
+.user-btn:hover,
 .logout:hover {
     background: rgba(255, 255, 255, .16);
     border-color: rgba(255, 255, 255, .6)
 }
 
+/* Main layout */
 main {
-    max-width: 1400px;
+    max-width: 1100px;
+    /* แคบลงให้ 2 คอลัมน์ดูแน่นพอดี */
     margin: 0 auto;
     padding: 24px clamp(16px, 4vw, 32px) 40px;
     display: grid;
-    gap: 24px
+    gap: 24px;
 }
 
 .section-title {
@@ -118,12 +93,15 @@ main {
     color: #2a2640
 }
 
+/* ====== กริด “สอง–สอง” ====== */
 .grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(260px, 1fr));
-    gap: 28px
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    /* 2 คอลัมน์ */
+    gap: 24px;
 }
 
+/* Tile */
 .tile {
     background: var(--card);
     border: 1px solid var(--divider);
@@ -137,7 +115,7 @@ main {
     text-align: center;
     text-decoration: none;
     color: inherit;
-    transition: transform .05s, box-shadow .15s, background .15s, border-color .15s
+    transition: transform .05s, box-shadow .15s, background .15s, border-color .15s;
 }
 
 .tile:hover {
@@ -158,14 +136,16 @@ main {
     max-width: 90%
 }
 
+/* ไอคอนให้ใหญ่ขึ้น */
 .tile svg {
-    width: min(92px, 13vw);
-    height: min(92px, 13vw);
-    opacity: .92
+    width: min(120px, 18vw);
+    height: min(120px, 18vw);
+    /* ใหญ่กว่าเดิม */
+    opacity: .95;
 }
 
 .tile b {
-    font-size: 22px
+    font-size: 24px
 }
 
 .tile small {
@@ -173,23 +153,14 @@ main {
     font-weight: 700
 }
 
-@media (max-width:1100px) {
-    .grid {
-        grid-template-columns: repeat(2, minmax(240px, 1fr))
-    }
-}
-
-@media (max-width:720px) {
+/* จอเล็ก → 1 คอลัมน์ */
+@media (max-width: 720px) {
     header.topbar {
         height: 84px
     }
 
-    .brand img {
+    .brand-logo {
         height: 46px
-    }
-
-    .brand .title b {
-        font-size: 18px
     }
 
     .grid {
@@ -207,6 +178,7 @@ main {
     }
 }
 
+/* Dark mode */
 @media (prefers-color-scheme:dark) {
     :root {
         --bg: #1c1728;

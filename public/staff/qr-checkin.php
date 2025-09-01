@@ -30,11 +30,33 @@ $defaultBase = $scheme . '://' . $host;
 </head>
 
 <body>
-    <header class="topbar">
-        <div class="brand">
-            <img src="/img/logoDSASMART.png" alt="DSA" class="brand-logo">
-        </div>
-    </header>
+    </head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/img/logoDSASMART.png" alt="DSA" class="brand-logo">
+    </div>
+
+    <!-- ขวาบน: ชื่อผู้ใช้ + ออกจากระบบ -->
+    <div class="righttools">
+      <span class="user-btn" aria-label="ผู้ใช้ปัจจุบัน">
+        <!-- ไอคอนผู้ใช้เล็ก ๆ -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+        <?php echo htmlspecialchars($displayName, ENT_QUOTES, 'UTF-8'); ?>
+      </span>
+      <a class="logout" href="/auth/logout.php" title="ออกจากระบบ">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <path d="M16 17l5-5-5-5"/><path d="M21 12H9"/>
+        </svg>
+        ออกจากระบบ
+      </a>
+    </div>
+  </header>
 
     <br>
     <main class="stage">

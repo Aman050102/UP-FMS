@@ -11,10 +11,10 @@
   <meta name="color-scheme" content="light dark">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="/assets/css/login.css">
+  <link rel="stylesheet" href="/public/assets/css/login.css">
 
   <!-- JavaScript -->
-  <script src="js/login.js" defer></script>
+  <script src="/public/js/login.js" defer></script>
 
 </head>
 <body>
@@ -22,7 +22,7 @@
   <header class="topbar" aria-label="University Bar">
     <div class="brand-small" aria-label="DQSD logo small">
       <span>
-        <img src="/img/logo-dsa.png" alt="DQSD" height="50">
+        <img src="/public/img/logoDSASMART.png" alt="DSA" height="100">
       </span>
     </div>
   </header>
@@ -42,7 +42,7 @@
 
       <!-- โลโก้/ชื่อหน่วยงาน -->
       <div class="logo-block" aria-live="polite">
-        <img src="../../img/dsa.png" alt="ตรากองพัฒนาคุณภาพนิสิตและนิสิตพิการ" height="250">
+        <img src="/public/img/dsa.png" alt="ตรากองพัฒนาคุณภาพนิสิตและนิสิตพิการ" height="250">
       </div>
 
       <div class="divider" role="separator" aria-hidden="true"></div>
