@@ -30,9 +30,8 @@ $defaultBase = $scheme . '://' . $host;
 </head>
 
 <body>
-    <header>
+    <header class="topbar">
         <div class="brand">
-            <!-- แก้พาธรูป: วางไฟล์ไว้ที่ public/img/logoDSASMART.png -->
             <img src="/img/logoDSASMART.png" alt="DSA" class="brand-logo">
         </div>
     </header>

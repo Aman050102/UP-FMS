@@ -1,14 +1,32 @@
+/* /public/assets/css/choose.css  — combined, tidy, responsive */
+
+/* ---------- Theme tokens ---------- */
 :root {
+    --brand: #6f4ab4;
+    /* สีแถบหัว */
     --bg: #f6f5fb;
+    /* สีพื้นหลังเนื้อหา */
     --card: #fff;
     --text: #1b1a21;
     --muted: #6b657a;
     --divider: #e7e3ef;
     --shadow: 0 12px 30px rgba(30, 16, 60, .12);
-    --hbar: 80px;
-    --brand: #6f4ab4;
+    --hbar: 92px;
+    /* ความสูง header ให้เท่าหน้าสตาฟ */
 }
 
+/* Dark mode */
+@media (prefers-color-scheme:dark) {
+    :root {
+        --bg: #1f1a29;
+        --card: #221d2e;
+        --text: #f6f1ff;
+        --muted: #c7bfd3;
+        --divider: #3a304b;
+    }
+}
+
+/* ---------- Base ---------- */
 * {
     box-sizing: border-box
 }
@@ -32,25 +50,75 @@ body {
     flex-direction: column;
 }
 
-/* header แน่นอยู่ชิดซ้าย ขนาดคงที่ */
-header {
+/* ---------- Header (เหมือนหน้าสตาฟ) ---------- */
+header.topbar {
     height: var(--hbar);
     display: flex;
     align-items: center;
-    padding: 0 clamp(14px, 3vw, 22px);
+    justify-content: space-between;
+    padding: 0 clamp(16px, 4vw, 32px);
+    color: #fff;
+    font-weight: 800;
     background: transparent;
 }
 
-header .logo {
-    height: 52px;
+/* ซ้าย: โลโก้ + (ชื่อหน่วยงานถ้ามี) */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.brand-logo {
+    height: 100px;
     width: auto;
     object-fit: contain;
 }
-.brand img {
-    height: 120px;
-    object-fit: contain
+
+.brand .title {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
 }
 
+.brand .title b {
+    font-size: 20px;
+}
+
+.brand .title small {
+    opacity: .9;
+    font-weight: 700;
+}
+
+/* ขวา: ชื่อผู้ใช้ + ออกจากระบบ (ถ้ามี) */
+.righttools {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-btn,
+.logout {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .1);
+    color: #fff;
+    text-decoration: none;
+    transition: background .15s, border-color .15s;
+}
+
+.user-btn:hover,
+.logout:hover {
+    background: rgba(255, 255, 255, .16);
+    border-color: rgba(255, 255, 255, .6);
+}
+
+/* ---------- Main layout ---------- */
 main {
     flex: 1 1 auto;
     display: flex;
@@ -70,6 +138,7 @@ main {
     width: 100%;
 }
 
+/* ---------- Text helpers ---------- */
 .h3 {
     margin: 0 0 10px;
     font-size: clamp(18px, 2.5vw, 22px);
@@ -77,9 +146,10 @@ main {
 
 .hint {
     color: var(--muted);
-    font-size: clamp(13px, 1.9vw, 14px)
+    font-size: clamp(13px, 1.9vw, 14px);
 }
 
+/* ---------- Form row ---------- */
 .row {
     display: grid;
     gap: 12px;
@@ -88,9 +158,7 @@ main {
     grid-template-columns: minmax(120px, 220px) 1fr;
 }
 
-/* ปุ่ม/อินพุตขนาดจับถนัดมือ */
-input[type="date"],
-button {
+input[type="date"] {
     padding: 14px 16px;
     border: 1px solid var(--divider);
     border-radius: 14px;
@@ -99,13 +167,7 @@ button {
     width: 100%;
 }
 
-/* กริดปุ่มเลือกสนาม – ช่องใหญ่ แตะง่าย และไม่ “ขยับ” เวลาแสดงผล */
-.grid {
-    display: grid;
-    gap: 14px;
-    grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
-}
-
+/* ---------- Buttons ---------- */
 .btn {
     display: flex;
     align-items: center;
@@ -119,8 +181,8 @@ button {
     font-size: clamp(16px, 3.2vw, 18px);
     cursor: pointer;
     user-select: none;
-    transition: transform .05s, box-shadow .15s, background .15s;
     touch-action: manipulation;
+    transition: transform .05s, box-shadow .15s, background .15s;
 }
 
 .btn:hover {
@@ -132,18 +194,26 @@ button {
     transform: translateY(1px)
 }
 
+/* ---------- Grid ปุ่มเลือกสนาม ---------- */
+.grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+}
+
+/* ---------- ชั้น/แผง ---------- */
 .toolbar {
     display: flex;
     gap: 10px;
     align-items: center;
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 
 .hidden {
-    display: none
+    display: none !important;
 }
 
-/* Overlay “เสร็จสิ้น” เต็มจอและนิ่ง */
+/* ---------- Overlay “เสร็จสิ้น” ---------- */
 .overlay {
     position: fixed;
     inset: 0;
@@ -156,7 +226,7 @@ button {
 }
 
 .overlay.show {
-    display: flex
+    display: flex;
 }
 
 .card-ok {
@@ -174,10 +244,29 @@ button {
 }
 
 .ok-icon {
-    font-size: clamp(40px, 8vw, 56px)
+    font-size: clamp(40px, 8vw, 56px);
 }
 
-/* มือถือ: คงรูปแบบไม่ไหลจนปุ่มเล็กเกินไป */
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+    header.topbar {
+        height: 84px;
+    }
+
+    .brand-logo {
+        height: 46px;
+    }
+
+    .brand .title b {
+        font-size: 18px;
+    }
+
+    .user-btn,
+    .logout {
+        padding: 8px 10px;
+    }
+}
+
 @media (max-width: 640px) {
     .row {
         grid-template-columns: 1fr;
@@ -186,28 +275,5 @@ button {
     .grid {
         grid-template-columns: 1fr 1fr;
         gap: 12px;
-    }
-}
-
-/* โหมดมืด */
-@media (prefers-color-scheme:dark) {
-    :root {
-        --bg: #1f1a29;
-        --card: #221d2e;
-        --text: #f6f1ff;
-        --muted: #c7bfd3;
-        --divider: #3a304b
-    }
-
-    .btn {
-        background: #281f3a
-    }
-
-    .btn:hover {
-        background: #2d2442
-    }
-
-    .card-ok {
-        background: #d9d9d9
     }
 }

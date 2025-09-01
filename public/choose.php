@@ -20,10 +20,24 @@ require __DIR__ . '/../middlewares/require_person.php';
 
 <body>
   <div class="wrap">
-    <div class="brand">
-      <img src="/img/logoDSASMART.png" alt="DSA" class="brand-logo">
+    <header class="topbar">
+  <div class="brand">
+    <img src="/img/logoDSASMART.png" alt="DSA" class="brand-logo">
+    <!-- ถ้าอยากมีชื่อหน่วยงานด้วย ให้ปลดคอมเมนต์บล็อกนี้
+    <div class="title">
+      <b>กองกิจการนิสิต</b>
+      <small>Division of Student Affairs</small>
     </div>
+    -->
+  </div>
 
+  <div class="righttools">
+    <span class="user-btn">
+      <?php echo htmlspecialchars($_SESSION['user']['username'] ?? 'ผู้ใช้'); ?>
+    </span>
+    <a class="logout" href="/auth/logout.php">ออกจากระบบ</a>
+  </div>
+</header>
     <main>
       <section class="card">
         <div class="row">

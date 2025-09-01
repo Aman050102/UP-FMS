@@ -1,14 +1,56 @@
 :root {
-    --brand: #6f4ab4;
-    --bg: #f7f6fb;
+    --brand: #8f73dd;
+    --brand-600: #7c64c2;
+    --bg: #f3f1fa;
     --card: #fff;
-    --text: #1b1a21;
+    --text: #1d1b22;
     --muted: #6b657a;
     --divider: #e7e3ef;
-    --shadow: 0 12px 30px rgba(30, 16, 60, .12);
-    --radius-lg: 22px;
-    --radius-md: 14px;
+    --shadow: 0 16px 40px rgba(40, 22, 90, .12);
 }
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Noto Sans Thai", Roboto, Arial, sans-serif;
+    color: var(--text);
+    background: linear-gradient(180deg, var(--brand) 0 92px, var(--bg) 92px 100%)
+}
+
+header.topbar {
+    height: 92px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(16px, 4vw, 32px);
+    color: #fff;
+    font-weight: 800
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px
+}
+
+.brand img {
+    height: 120px;
+    object-fit: contain
+}
+
+html,
+body {
+    height: 100%
+}
+
 
 html,
 body {
