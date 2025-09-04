@@ -22,7 +22,7 @@ if (!(isset($_GET['demo']) && $_GET['demo'] === '1')) {
   <link rel="stylesheet" href="/assets/css/Check-inReport.css">
 
   <!-- สคริปต์หลักของหน้านี้ ต้องมีฟังก์ชัน load()/applyFilters()/rowsForExport() -->
-  <script src="../js/Check-inReport.js" defer></script>
+  <script src="/js/Check-inReport.js" defer></script>
 
   <!-- Export libs (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.19.3/dist/xlsx.full.min.js" defer></script>
